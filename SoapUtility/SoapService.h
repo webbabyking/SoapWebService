@@ -10,7 +10,6 @@
 
 
 
-
 @interface ResponseData : NSObject
 
 @property (nonatomic,assign) NSInteger StatusCode;

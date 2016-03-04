@@ -6,8 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SoapUtility.h"
-#import "SoapService.h"
+#import "Soap.h"
 
 //WEB WSDL内容
 static NSString *wsdl_content=@"";
