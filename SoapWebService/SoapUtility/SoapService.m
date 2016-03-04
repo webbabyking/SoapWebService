@@ -7,7 +7,6 @@
 //
 
 #import "SoapService.h"
-#import "AFNetworking.h"
 
 @implementation ResponseData 
 
@@ -41,16 +40,38 @@
     return result;
 }
 
+//-(void)PostAsync:(NSString *)postData Success:(SuccessBlock)success falure:(FailureBlock)failure{
+//    NSMutableURLRequest *request=[self CreatRequest:postData];
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+//     {
+//         success(operation.responseString);
+//     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//         failure(error);
+//     }];
+//    [operation start];
+//}
+
 -(void)PostAsync:(NSString *)postData Success:(SuccessBlock)success falure:(FailureBlock)failure{
     NSMutableURLRequest *request=[self CreatRequest:postData];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         success(operation.responseString);
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         failure(error);
-     }];
-    [operation start];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+   [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if ([data length] > 0 && connectionError == nil) {
+//            NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//            NSString *filePath = [documentsDir stringByAppendingPathComponent:@"apple.html"];
+//            [data writeToFile:filePath atomically:YES];
+//            NSLog(@"Successfully saved the file to %@",filePath);
+            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"ResponseString = %@",responseString);
+            success(responseString);
+        }else if ([data length] == 0 && connectionError == nil){
+            NSLog(@"Nothing was downloaded.");
+            success(@"");
+        }else if (connectionError != nil){
+            NSLog(@"Error happened = %@",connectionError);
+            failure(connectionError);
+        }
+    }];
 }
 
 -(NSMutableURLRequest *)CreatRequest:(NSString *)postData{
@@ -87,6 +108,7 @@
     
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    
     return request;
 }
 
