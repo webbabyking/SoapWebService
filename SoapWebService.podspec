@@ -14,8 +14,8 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.frameworks = 'Foundation'
   
-  #s.dependency 'AFNetworking', '~> 2.5.4'
-  s.dependency 'AFNetworking', '~> 3.0.4'
+  s.dependency 'AFNetworking', '~> 2.5.4'
+  #s.dependency 'AFNetworking', '~> 3.0.4'
   
   s.subspec 'libxml_module' do |ss|
     ss.dependency 'KissXML', '~> 5.0.3'
