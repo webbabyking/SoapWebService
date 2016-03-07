@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
+//检查系统版本
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+
 @implementation ResponseData 
 
 @end
@@ -30,7 +38,7 @@
 -(ResponseData *)PostSync:(NSString *)postData{
     NSMutableURLRequest *request=[self CreateRequest:postData];
     ResponseData *result=[[ResponseData alloc] init];
-    if([self getOSVersion]>=9.0){
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")){
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         NSURLSession *session = [NSURLSession sharedSession];
         NSURLSessionDataTask *task=[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
@@ -65,7 +73,7 @@
 
 -(void)PostAsync:(NSString *)postData Success:(SuccessBlock)success falure:(FailureBlock)failure{
     NSMutableURLRequest *request=[self CreateRequest:postData];
-    if([self getOSVersion]>=9.0){
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")){
         NSURLSession *session = [NSURLSession sharedSession];
         NSURLSessionDataTask *task=[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
             if ([data length] > 0 && error == nil) {
@@ -152,7 +160,7 @@
 -(ResponseData *)GetWSDL{
     NSMutableURLRequest *request=[self CreateGetWSDLRequest];
     ResponseData *result=[[ResponseData alloc] init];
-    if([self getOSVersion]>=9.0){
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")){
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         NSURLSession *session = [NSURLSession sharedSession];
         NSURLSessionDataTask *task=[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
@@ -224,11 +232,6 @@
     [request setHTTPMethod:@"GET"];
     
     return request;
-}
-
-- (double) getOSVersion{
-    double version = [[UIDevice currentDevice].systemVersion doubleValue];//判定系统版本。
-    return version;
 }
 
 @end
