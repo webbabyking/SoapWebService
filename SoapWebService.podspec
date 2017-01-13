@@ -17,7 +17,6 @@ Pod::Spec.new do |s|
   s.subspec 'SoapUtility' do |ss|
     ss.dependency 'KissXML', '~> 5.1.2'
     ss.source_files = 'SoapWebService/**/*.{h,m}'
-    ss.private_header_files = 'SoapWebService/**/*.h'
     ss.public_header_files = 'SoapWebService/**/Soap.h'
     ss.ios.frameworks = 'Foundation','UIKit'
     ss.library      = 'xml2'
