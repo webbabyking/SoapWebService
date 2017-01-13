@@ -21,7 +21,6 @@ Pod::Spec.new do |s|
     ss.ios.frameworks = 'Foundation','UIKit'
     ss.library      = 'xml2'
     ss.xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'}
-    ss.ios.deployment_target = '6.0'
   end
  
   s.subspec 'SoapWebService' do |ss|
@@ -31,6 +30,6 @@ Pod::Spec.new do |s|
     ss.ios.frameworks = 'Foundation'
   end
 
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '8.0'
 
 end
