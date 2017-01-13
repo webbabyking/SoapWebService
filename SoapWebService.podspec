@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     ss.dependency 'KissXML', '~> 5.1.2'
     ss.source_files = 'SoapWebService/**/*.{h,m}'
     ss.private_header_files = 'SoapWebService/**/*.h'
-    ss.public_header_files = 'SoapWebService/SoapUtility/Soap.h'
+    ss.public_header_files = 'SoapWebService/**/Soap.h'
     ss.ios.frameworks = 'Foundation','UIKit'
     ss.library      = 'xml2'
     ss.xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'}
