@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
     ss.dependency 'KissXML', '~> 5.1.2'
   end
  
-  s.subspec 'Core' do |ss|
+  s.subspec 'SoapWebService' do |ss|
     ss.dependency 'SoapWebService/SoapUtility'
     ss.source_files = 'SoapWebService/*.{h,m}'
     ss.public_header_files = 'SoapWebService/*.h'
