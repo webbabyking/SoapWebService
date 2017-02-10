@@ -7,6 +7,7 @@
 //
 
 #import "SoapUtility.h"
+#import "DDXML.h"
 
 
 @interface SoapUtility(){
