@@ -22,8 +22,8 @@ Pod::Spec.new do |s|
  
   s.subspec 'Core' do |ss|
     ss.dependency 'SoapWebService/SoapUtility'
+    ss.public_header_files = 'SoapWebService/*.h'
     ss.source_files = 'SoapWebService/*.{h,m}'
-    ss.public_header_files = 'SoapWebService/SoapWebService.h'
     ss.ios.frameworks = 'Foundation','UIKit'
     ss.library      = 'xml2'
     ss.xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'}
