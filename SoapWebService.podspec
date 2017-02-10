@@ -7,8 +7,9 @@ Pod::Spec.new do |s|
   s.author       = { 'wangjie' => '45522391@qq.com' }
   s.platform     = :ios,'7.0'
   s.source       = { :git => 'https://github.com/webbabyking/SoapWebService.git', :tag => s.version.to_s }
-  s.default_subspecs = 'SoapWebService'
+  
   s.requires_arc = true
+  s.default_subspecs = 'SoapWebService'
   
   s.subspec 'SoapUtility' do |ss|
     ss.public_header_files = 'SoapWebService/SoapUtility/Soap.h'
@@ -20,6 +21,7 @@ Pod::Spec.new do |s|
   end
  
   s.subspec 'SoapWebService' do |ss|
+    ss.dependency 'SoapWebService/SoapUtility'
     ss.source_files = 'SoapWebService/*.{h,m}'
     ss.public_header_files = 'SoapWebService/SoapWebService.h'
   end
