@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   end
  
   s.subspec 'Core' do |ss|
-    //ss.dependency 'SoapWebService/SoapUtility'
+    #ss.dependency 'SoapWebService/SoapUtility'
     ss.public_header_files = 'SoapWebService/**'
     ss.source_files = 'SoapWebService/**'
     ss.ios.frameworks = 'Foundation','UIKit'
