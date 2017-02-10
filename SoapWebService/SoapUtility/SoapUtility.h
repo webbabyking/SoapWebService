@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#import <DDXML.h>
+#import "DDXML.h"
 #import "DDXMLElement+WSDL.h"
-
 
 @interface SoapUtility : NSObject
 
