@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://github.com/webbabyking/SoapWebService'
   s.license      = 'MIT'
   s.author       = { 'wangjie' => '45522391@qq.com' }
-  s.platform     = :ios,'7.0'
+  s.platform     = :ios,'8.0'
   s.source       = { :git => 'https://github.com/webbabyking/SoapWebService.git', :tag => s.version.to_s }
   
   s.requires_arc = true
@@ -21,13 +21,12 @@ Pod::Spec.new do |s|
   end
  
   s.subspec 'Core' do |ss|
-    #ss.dependency 'SoapWebService/SoapUtility'
-    ss.public_header_files = 'SoapWebService/**'
-    ss.source_files = 'SoapWebService/**'
+    ss.dependency 'SoapWebService/SoapUtility'
+    ss.source_files = 'SoapWebService/*.{h,m}'
+    ss.public_header_files = 'SoapWebService/*.h'
     ss.ios.frameworks = 'Foundation','UIKit'
     ss.library      = 'xml2'
     ss.xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'}
-    ss.dependency 'KissXML', '~> 5.1.2'
   end
 
   s.ios.deployment_target = '8.0'
