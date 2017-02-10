@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.default_subspecs = 'Core'
   
   s.subspec 'SoapUtility' do |ss|
-    ss.public_header_files = 'SoapWebService/SoapUtility/Soap.h'
+    ss.public_header_files = 'SoapWebService/SoapUtility/*.h'
     ss.source_files = 'SoapWebService/SoapUtility/*.{h,m}'
     ss.ios.frameworks = 'Foundation','UIKit'
     ss.library      = 'xml2'
