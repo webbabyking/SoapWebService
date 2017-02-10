@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'SoapWebService/*.h'
     ss.ios.frameworks = 'Foundation','UIKit'
     ss.library      = 'xml2'
-    ss.xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'}
+    ss.xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2','CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'=> 'true'}
   end
 
   s.ios.deployment_target = '8.0'
