@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => 'https://github.com/webbabyking/SoapWebService.git', :tag => s.version.to_s }
   
   s.requires_arc = true
-  s.default_subspecs = 'SoapWebService'
+  s.default_subspecs = 'Core'
   
   s.subspec 'SoapUtility' do |ss|
     ss.public_header_files = 'SoapWebService/SoapUtility/Soap.h'
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
     ss.dependency 'KissXML', '~> 5.1.2'
   end
  
-  s.subspec 'SoapWebService' do |ss|
+  s.subspec 'Core' do |ss|
     ss.dependency 'SoapWebService/SoapUtility'
     ss.source_files = 'SoapWebService/*.{h,m}'
     ss.public_header_files = 'SoapWebService/SoapWebService.h'
